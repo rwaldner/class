@@ -1,0 +1,8 @@
+
+apply plugin: 'java'
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+    main = 'Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
