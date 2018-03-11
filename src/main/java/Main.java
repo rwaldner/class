@@ -13,6 +13,14 @@ public class Main {
 		m.run();
 	}
 
+	private SortedMap<String, String> getAsSortedMap (Properties props) {
+		SortedMap<String,String> sortedProperties = new TreeMap<String,String>();
+		for (final String name: props.stringPropertyNames()) {
+			sortedProperties.put(name, props.getProperty(name));
+		}
+		return sortedProperties;
+	}
+	
 	public void run () throws IOException {
 		println("");
 		println("Locale info");
@@ -34,11 +42,11 @@ public class Main {
 		println("-----------------");
 
 		Properties props = System.getProperties();
-		SortedMap sortedSystemProperties = new TreeMap(props);
-        Set keySet = sortedSystemProperties.keySet();
-        Iterator iterator = keySet.iterator();
+		SortedMap<String,String> sortedSystemProperties = getAsSortedMap(props);
+        Set<String> keySet = sortedSystemProperties.keySet();
+        Iterator<String> iterator = keySet.iterator();
         while (iterator.hasNext()) {
-            String propertyName = (String) iterator.next();
+            String propertyName = iterator.next();
             String propertyValue = props.getProperty(propertyName);
             println(propertyName + ": " + propertyValue + "");
         }
