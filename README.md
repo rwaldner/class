@@ -1,5 +1,8 @@
 
 # Simple class File with minimal Java output
+Small Java class which outputs some standard information that is available in every Java runtime environment:
+* information about the locale
+* information about the system properties
 
 ## Build
 ```
