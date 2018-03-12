@@ -22,36 +22,12 @@ public class Main {
 	}
 	
 	public void run () throws IOException {
-		println("");
-		println("Locale info");
-		println("-----------------");
-		println("Default locale   = " + Locale.getDefault().toString());
-		println("Country          = " + Locale.getDefault().getCountry());
-		println("Display Country  = " + Locale.getDefault().getDisplayCountry());
-		println("Language         = " + Locale.getDefault().getLanguage());
-		println("Display Language = " + Locale.getDefault().getDisplayLanguage());
-		println("Display Name     = " + Locale.getDefault().getDisplayName());
-		println("Script           = " + Locale.getDefault().getScript());
-		println("Display Script   = " + Locale.getDefault().getDisplayScript());
-		println("ISO3 Country     = " + Locale.getDefault().getISO3Country());
-		println("ISO3 Language    = " + Locale.getDefault().getISO3Language());
-		println("LanguageTag      = " + Locale.getDefault().toLanguageTag());
+		showLocaleInfo();
+		showSystemProperties();
+		showVersionInfo();
+	}
 
-		println("");
-		println("System Properties");
-		println("-----------------");
-
-		Properties props = System.getProperties();
-		SortedMap<String,String> sortedSystemProperties = getAsSortedMap(props);
-        Set<String> keySet = sortedSystemProperties.keySet();
-        Iterator<String> iterator = keySet.iterator();
-        while (iterator.hasNext()) {
-            String propertyName = iterator.next();
-            String propertyValue = props.getProperty(propertyName);
-            println(propertyName + ": " + propertyValue + "");
-        }
-		
-		
+	private void showVersionInfo() throws IOException {
 		println("");
 		println("Version info");
 		println("------------");
@@ -72,6 +48,38 @@ public class Main {
 		} else {
 			println("No version.properties file found");
 		}
+	}
 
+	private void showSystemProperties() {
+		println("");
+		println("System Properties");
+		println("-----------------");
+
+		Properties props = System.getProperties();
+		SortedMap<String,String> sortedSystemProperties = getAsSortedMap(props);
+        Set<String> keySet = sortedSystemProperties.keySet();
+        Iterator<String> iterator = keySet.iterator();
+        while (iterator.hasNext()) {
+            String propertyName = iterator.next();
+            String propertyValue = props.getProperty(propertyName);
+            println(propertyName + ": " + propertyValue + "");
+        }
+	}
+
+	private void showLocaleInfo() {
+		println("");
+		println("Locale info");
+		println("-----------------");
+		println("Default locale   = " + Locale.getDefault().toString());
+		println("Country          = " + Locale.getDefault().getCountry());
+		println("Display Country  = " + Locale.getDefault().getDisplayCountry());
+		println("Language         = " + Locale.getDefault().getLanguage());
+		println("Display Language = " + Locale.getDefault().getDisplayLanguage());
+		println("Display Name     = " + Locale.getDefault().getDisplayName());
+		println("Script           = " + Locale.getDefault().getScript());
+		println("Display Script   = " + Locale.getDefault().getDisplayScript());
+		println("ISO3 Country     = " + Locale.getDefault().getISO3Country());
+		println("ISO3 Language    = " + Locale.getDefault().getISO3Language());
+		println("LanguageTag      = " + Locale.getDefault().toLanguageTag());
 	}
 }
