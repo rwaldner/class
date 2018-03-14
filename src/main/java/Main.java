@@ -1,5 +1,10 @@
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import javax.tools.JavaCompiler;
+import javax.tools.ToolProvider;
 
 
 public class Main {
@@ -22,9 +27,37 @@ public class Main {
 	}
 	
 	public void run () throws IOException {
+		showTimeAndDate();
+		showJdkOrJre();
 		showLocaleInfo();
 		showSystemProperties();
 		showVersionInfo();
+	}
+
+	private void showJdkOrJre() {
+		println("");
+		println("JDK or JRE");
+		println("------------");
+		JavaCompiler c = ToolProvider.getSystemJavaCompiler();
+		if (c == null) {
+		    println("JRE");
+		} else {
+		    println("JDK");
+		}
+		
+	}
+
+	private void showTimeAndDate() {
+		Date d = new Date();
+	    DateFormat dateTimeFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    DateFormat timeFormat = new SimpleDateFormat("HH:mm:ssZ");
+		println("");
+		println("Time and Date");
+		println("------------");
+		println("Date and Time: " + dateTimeFormat.format(d));
+		println("Date: " + dateFormat.format(d));
+		println("Time: " + timeFormat.format(d));
 	}
 
 	private void showVersionInfo() throws IOException {
